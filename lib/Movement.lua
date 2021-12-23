@@ -1,3 +1,5 @@
+local Logger = require("lib.Logger")
+local System = require("lib.System")
 local Movement = {}
 
 Movement.Direction = {
@@ -7,13 +9,8 @@ Movement.Direction = {
     BACKWARD    = "BACKWARD"
 }
 
-function Movement.fuelLevel()
-    local limit = turtle.getFuelLimit()
-    local level = turtle.getFuelLevel()
-    return limit / level
-end
 
-function Movement.reverseMove(direction)
+function Movement.reverse(direction)
     local success = false
     if (direction == Movement.Direction.UP) then
         success = Movement.move(Movement.Direction.DOWN)
@@ -24,7 +21,7 @@ function Movement.reverseMove(direction)
     elseif (direction == Movement.Direction.BACKWARD) then
         success = Movement.move(Movement.Direction.FORWARD)
     else
-        print("No Direction provided") 
+        Logger.error("Movement.reverse", "No Direction provided") 
     end
 
     return success
@@ -43,16 +40,16 @@ function Movement.move(direction)
     elseif (direction == Movement.Direction.BACKWARD) then
         success = turtle.back()
     else
-        print("No Direction provided") 
+        Logger.error("Movement.move", "No Direction provided") 
         success = false
     end
 
     -- Check Error Reason
     if (success == false) then
-        local errorMsg = "[Movement.move] - ERROR - ("..direction..")"
+        local errorMsg = "("..direction..")"
         local foundReason = false;
 
-        if (Movement.fuelLevel() == 0) then
+        if (System.Fuel.level() == 0) then
             errorMsg = errorMsg .. " No Fuel"
             foundReason = true
         end
@@ -81,7 +78,7 @@ function Movement.move(direction)
             errorMsg = errorMsg .. " unknown error"
         end
 
-        print(errorMsg)
+        Logger.error("Movement.move", errorMsg)
     end
     return success
 end

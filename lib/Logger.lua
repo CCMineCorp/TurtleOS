@@ -9,6 +9,7 @@ Logger.Level = {
 }
 
 function Logger.log(level, tag, msg)
+    local msg = msg and msg or ""
     local levelTag = "["..level.."]"
     local classTag = "["..tag.."]"
     local logMsg = levelTag.." "..classTag.." "..msg
@@ -30,3 +31,5 @@ end
 function Logger.critical(tag, msg)
     Logger.log(Logger.Level.CRITICAL, tag, msg)
 end
+
+return Logger
