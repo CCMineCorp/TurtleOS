@@ -8,16 +8,15 @@ IO.Types = {
 }
 
 IO.Sides = {
-    LEFT = "left",
-    RIGHT = "right",
+    "left",
+    "right",
 }
 
 
 function IO.list()
     local io_list = {}
     for i = 1, 2, 1 do
-        local side = IO.Sides[i]
-        local iotype = peripheral.getType(IO.Sides[i])
+        local iotype = peripheral.getType(side)
         io_list[side] = iotype
     end
     return io_list
