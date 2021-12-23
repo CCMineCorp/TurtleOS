@@ -40,7 +40,7 @@ function Movement.move(direction)
     elseif (direction == Movement.Direction.BACKWARD) then
         success = turtle.back()
     else
-        Logger.error("Movement.move", "No Direction provided") 
+        Logger.error("Movement.move", "No Direction provided")
         success = false
     end
 

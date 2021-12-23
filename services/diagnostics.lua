@@ -1,7 +1,5 @@
 local Logger = require("lib.Logger")
--- local Movement = require("lib.Movement")
 local System = require("lib.System")
-local IO = require("lib.IO")
 
 
 local Diagnostics = {Tests={}}
