@@ -32,7 +32,7 @@ local FileURLS = {
     {
         NAME="Farmbot Software",
         REPO="https://raw.githubusercontent.com/CCMineCorp/TurtleOS/{BRANCH}",
-        PATH="/programs/farmbot.lua"
+        PATH="/farmbot.lua"
     }
 }
 
